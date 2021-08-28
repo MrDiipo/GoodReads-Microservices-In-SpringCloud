@@ -2,20 +2,20 @@ package com.dipo.moviecatalogservice.models;
 
 public class Rating {
 
-    private String movidId;
+    private String movieId;
     private int ratings;
 
-    public Rating(String movidId, int ratings) {
-        this.setMovidId(movidId);
+    public Rating(String movieId, int ratings) {
+        this.setMovieId(movieId);
         this.setRatings(ratings);
     }
 
-    public String getMovidId() {
-        return movidId;
+    public String getMovieId() {
+        return movieId;
     }
 
-    public void setMovidId(String movidId) {
-        this.movidId = movidId;
+    public void setMovieId(String movieId) {
+        this.movieId = movieId;
     }
 
     public int getRatings() {

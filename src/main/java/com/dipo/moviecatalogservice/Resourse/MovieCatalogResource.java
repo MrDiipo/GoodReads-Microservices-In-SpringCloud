@@ -28,15 +28,16 @@ public class MovieCatalogResource {
     public List<CatalogItem> getCatalog(@PathVariable("userId")String userId){
 
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.getForObject("http://localhost:7070/movies/dipo", Movie.class);
-
         List<Rating> ratings = Arrays.asList(
                 new Rating("Togo", 6),
                 new Rating("Transformers", 6)
         );
 
         return ratings.stream()
-                .map(rating -> new CatalogItem("The legend", "Test", 6))
+                .map(rating -> {
+                    Movie movie = restTemplate.getForObject("http://localhost:7070/movies/" + rating.getMovieId() , Movie.class);
+                    return new CatalogItem(movie.getName(), "desc", rating.getRatings());
+                })
                 .collect(Collectors.toList());
     }
 }
